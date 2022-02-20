@@ -7,7 +7,7 @@
         "url": "git+https://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@github.com/paulkim3151/NodeJS.git"
     },
     "scripts": {
-        "dev": "nodemon --exec babel-node index.js"
+        "dev": "nodemon --exec babel-node src/server.js"
     },
     "author": "Paul Kim",
     "license": "ISC",
