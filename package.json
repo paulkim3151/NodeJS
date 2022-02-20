@@ -1,0 +1,27 @@
+{
+    "name": "wetube",
+    "version": "1.0.0",
+    "description": "youtube clone project",
+    "repository": {
+        "type": "git",
+        "url": "git+https://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@github.com/paulkim3151/NodeJS.git"
+    },
+    "scripts": {
+        "dev": "nodemon --exec babel-node index.js"
+    },
+    "author": "Paul Kim",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/paulkim3151/NodeJS/issues"
+    },
+    "homepage": "https://github.com/paulkim3151/NodeJS#readme",
+    "dependencies": {
+        "express": "^4.17.3"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.17.5",
+        "@babel/node": "^7.16.8",
+        "@babel/preset-env": "^7.16.11",
+        "nodemon": "^2.0.15"
+    }
+}
