@@ -1,0 +1,11 @@
+extends base.pug
+
+block content
+	div
+		p=video.description
+		small=video.createdAt
+		each tag in video.hashtags
+			small(style="margin-left: 5px")=tag
+		h3 #{video.meta.views} #{video.views === 1 ? "view" : "views" }
+	button(onclick=`location.href='${video.id}/edit'`) Edit
+	button(onclick=`if(confirm("정말로 삭제하시겠습니까?")){location.href='${video.id}/delete'}`) Delete

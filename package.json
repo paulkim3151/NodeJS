@@ -7,7 +7,8 @@
         "url": "git+https://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@github.com/paulkim3151/NodeJS.git"
     },
     "scripts": {
-        "dev": "nodemon --exec babel-node src/server.js"
+        "dev": "nodemon --exec babel-node src/init.js",
+		"db" : "mongod &>/dev/null &"
     },
     "author": "Paul Kim",
     "license": "ISC",
@@ -16,7 +17,10 @@
     },
     "homepage": "https://github.com/paulkim3151/NodeJS#readme",
     "dependencies": {
-        "express": "^4.17.3"
+        "express": "^4.17.3",
+        "mongoose": "^6.2.4",
+        "morgan": "^1.10.0",
+        "pug": "^3.0.2"
     },
     "devDependencies": {
         "@babel/core": "^7.17.5",
