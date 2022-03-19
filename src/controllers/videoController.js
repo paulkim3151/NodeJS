@@ -10,6 +10,9 @@ export const watch = async (req, res) => {
 	if (!video) {
 		return res.status(404).render('404', { pageTitle: 'Video not found.' });
 	}
+	
+	video.meta.views++;
+	await video.save()
 	return res.render('watch', { pageTitle: `Watching ${video.title}`, video });
 };
 export const getEdit = async (req, res) => {
