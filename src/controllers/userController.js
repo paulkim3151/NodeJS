@@ -47,7 +47,7 @@ export const getLogin = (req, res) => {
 export const postLogin = async (req, res) => {
 	const pageTitle = 'Login';
 	const { username, password } = req.body;
-	const user = await User.findOne({ username , socialOnly: false});
+	const user = await User.findOne({ username, socialOnly: false });
 	if (!user) {
 		return res.status(400).render('login', {
 			pageTitle,
@@ -113,8 +113,8 @@ export const finishGithubLogin = async (req, res) => {
 				},
 			})
 		).json();
-		
-		// Step 3: Get primary & verified user email 
+
+		// Step 3: Get primary & verified user email
 		const emailData = await (
 			await fetch(`${apiUrl}/user/emails`, {
 				headers: {
@@ -122,31 +122,30 @@ export const finishGithubLogin = async (req, res) => {
 				},
 			})
 		).json();
-		const emailObj = emailData.find(
-			(email) => email.primary && email.verified);
+		const emailObj = emailData.find((email) => email.primary && email.verified);
 		if (!emailObj) {
 			// No valid email found
-			return res.redirect("/login");
+			return res.redirect('/login');
 		}
-			
+
 		// Step 4: Check user and create user if doesn't exist.
-		let user = await User.findOne({email: emailObj.email});
+		let user = await User.findOne({ email: emailObj.email });
 		if (!user) {
 			user = await User.create({
 				avatarUrl: userData.avatar_url,
 				name: userData.name,
 				username: userData.login,
 				email: emailObj.email,
-				password: "",
+				password: '',
 				socialOnly: true,
 				location: userData.location,
-			})
+			});
 		}
 		req.session.loggedIn = true;
 		req.session.user = user;
-		
+
 		// Login Completed!
-		return res.redirect("/");
+		return res.redirect('/');
 	} else {
 		// access token error
 		return res.redirect('/login');
@@ -154,11 +153,33 @@ export const finishGithubLogin = async (req, res) => {
 };
 
 export const getEdit = (req, res) => {
-	return res.render('edit-profile', {pageTitle: "Edit Profile"});
-}
+	return res.render('edit-profile', { pageTitle: 'Edit Profile' });
+};
 
-export const postEdit = (req, res) => {
-	return res.render('edit-profile');
-}
+export const postEdit = async (req, res) => {
+	const {
+		session: {
+			user: { _id },
+		},
+		body: { name, email, username, location },
+	} = req;
+	
+	// Check validation of email and user if they were changed
+	if (email !== req.session.user.email || username !== req.session.user.username) {
+		const exists = await User.exists({ $or: [{ username }, { email }] });
+		if (exists) {
+			// User already exist!
+			console.log("Username or email already exists!")
+			return res.redirect('/users/edit');
+		}
+	}
+	
+	const updatedUser = await User.findByIdAndUpdate(
+		_id, 
+		{name, email, username, location}, 
+		{new: true});
+	req.session.user = updatedUser;
+	return res.redirect('/users/edit');
+};
 
 export const see = (req, res) => res.send('See User');
