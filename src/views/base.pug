@@ -16,7 +16,7 @@ html(lang="ko")
 							a(href="/users/edit") Edit Profile
 						li
 							a(href="/logout") Log out
-						li
+						//-li
 							a(href="/my-profile") #{loggedInUser.name}의 Profile
 						li
 							a(href="/videos/upload") Upload
@@ -27,5 +27,7 @@ html(lang="ko")
 							a(href="/join") Join
 			h1=pageTitle
 		main
+			if errorMessage
+				span(style="color:red")=errorMessage
 			block content
 	include partials/footer

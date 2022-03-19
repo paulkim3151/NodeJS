@@ -168,7 +168,7 @@ export const postEdit = async (req, res) => {
 	if (email !== req.session.user.email || username !== req.session.user.username) {
 		const exists = await User.exists({ $or: [{ username }, { email }] });
 		if (exists) {
-			// User already exist!
+			// User already exist! TODO
 			console.log("Username or email already exists!")
 			return res.redirect('/users/edit');
 		}
@@ -181,5 +181,52 @@ export const postEdit = async (req, res) => {
 	req.session.user = updatedUser;
 	return res.redirect('/users/edit');
 };
+
+export const getChangePassword= (req, res) => {
+	if(req.session.user.socialOnly) {
+		// social-only users cannot change password
+		return res.redirect("/");
+	}
+	return res.render("change-password", {pageTitle: "Change Password"});
+}
+
+export const postChangePassword= async (req, res) => {
+	const {
+		session: {
+			user: { _id, password },
+		},
+		body: { oldPassword, newPassword, newPassword2 },
+	} = req;
+	
+	if (newPassword !== newPassword2) {
+		return res.status(400).render("change-password", {
+			pageTitle: "Change Password",
+			errorMessage: "Password Confirmation check failed."
+		});
+	}
+	
+	if (oldPassword === newPassword) {
+		return res.status(400).render("change-password", {
+			pageTitle: "Change Password",
+			errorMessage: "New password should not be same with old password."
+		});
+	}
+	
+	const ok = await bcrypt.compare(oldPassword, password);
+	if (!ok) {
+		return res.status(400).render("change-password", {
+			pageTitle: "Change Password",
+			errorMessage: "The current password is incorrect",
+		}); 
+	}
+	
+	console.log("Changing password:");
+	const user = await User.findById(_id);
+	user.password = newPassword;
+	await user.save();
+	req.session.destroy();
+	// TODO: send notification
+	return res.redirect("/login");
+}
 
 export const see = (req, res) => res.send('See User');

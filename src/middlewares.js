@@ -9,6 +9,8 @@ export const protectorMiddleware = (req, res, next) => {
 	if (req.session.loggedIn) {
 		next();
 	} else {
+		// TODO
+		console.log("Login required")
 		return res.redirect("/login");
 	}
 }
@@ -17,6 +19,8 @@ export const publicOnlyMiddleware = (req, res, next) => {
 	if (!req.session.loggedIn) {
 		next();
 	} else {
+		// TODO
+		console.log("User already loggedIn.")
 		return res.redirect("/");
 	}
 }
