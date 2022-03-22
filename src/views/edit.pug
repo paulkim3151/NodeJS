@@ -1,9 +1,11 @@
 extends base.pug
 
 block content
-	h4 Change Title of #{video.title}
 	form(method="POST")
-		input(name="title",placeholder="Video Title",required,value=video.title,autofocus)
-		input(name="description",placeholder="Description", required, type="text", value=video.description)
-		input(name="hashtags",placeholder="Hashtags, seperated by comma.", require value=video.hashtags.join())
+		label Title
+			input(name="title",placeholder="Video Title",required,value=video.title,autofocus)
+		label Description
+			input(name="description",placeholder="Description", required, type="text", value=video.description)
+		label Hashtags
+			input(name="hashtags",placeholder="Hashtags, seperated by comma.", require value=video.hashtags.join())
 		input(value="Save",type="submit")

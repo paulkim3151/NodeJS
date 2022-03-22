@@ -6,10 +6,14 @@ block content
 	form(method="POST", enctype="multipart/form-data")
 		label(for="avatar") Avatar
 		input(type="file", id="avatar", name="avatar", accept="image/*")
-		input(name="name", type="text", required, placeholder="Name", value=loggedInUser.name)
-		input(name="email", type="email", required, placeholder="Email", value=loggedInUser.email)
-		input(name="username", type="text", required, placeholder="Username", value=loggedInUser.username)
-		input(name="location", type="text", required, placeholder="Location", value=loggedInUser.location)
+		label Name
+			input(name="name", type="text", required, placeholder="Name", value=loggedInUser.name)
+		label Email
+			input(name="email", type="email", required, placeholder="Email", value=loggedInUser.email)
+		label User ID
+			input(name="username", type="text", required, placeholder="Username", value=loggedInUser.username)
+		label Location
+			input(name="location", type="text", placeholder="Location", value=loggedInUser.location)
 		input(type="submit", value="Update Profile")
 		if !loggedInUser.socialOnly
 			hr

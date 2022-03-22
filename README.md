@@ -1,6 +1,8 @@
 Youtube Cloning Project
 =============
 
+TODO: 비디오 삭제시 User Model에서도 video 삭제
+
 / -> Home   
 /join -> Join   
 /login -> Login   

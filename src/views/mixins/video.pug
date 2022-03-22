@@ -1,7 +1,9 @@
 mixin video(info)
 	div
 		h3
-			a(href=`videos/${info.id}`)=info.title
+			a(href=`/videos/${info.id}`) #{info.title} &nbsp;
+			if info.owner.name
+				small by #{info.owner.name}
 		p=info.description
 		small=info.createdAt
 		small
