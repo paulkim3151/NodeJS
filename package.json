@@ -7,9 +7,14 @@
         "url": "git+https://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@github.com/paulkim3151/NodeJS.git"
     },
     "scripts": {
-        "dev": "nodemon --exec babel-node src/init.js",
-        "db": "mongod &>/dev/null &"
+        "server": "nodemon",
+        "db": "mongod &>/dev/null &",
+        "assets": "webpack --config webpack.config.js"
     },
+	  "nodemonConfig": {
+			"ignore": ["webpack.config.js", "src/client/*", "assets/*"],
+			"exec": "babel-node src/init.js"
+		},
     "author": "Paul Kim",
     "license": "ISC",
     "bugs": {
@@ -32,6 +37,14 @@
         "@babel/core": "^7.17.5",
         "@babel/node": "^7.16.8",
         "@babel/preset-env": "^7.16.11",
-        "nodemon": "^2.0.15"
+        "babel-loader": "^8.2.4",
+        "css-loader": "^6.7.1",
+        "mini-css-extract-plugin": "^2.6.0",
+        "nodemon": "^2.0.15",
+        "sass": "^1.49.9",
+        "sass-loader": "^12.6.0",
+        "style-loader": "^3.3.1",
+        "webpack": "^5.70.0",
+        "webpack-cli": "^4.9.2"
     }
 }
