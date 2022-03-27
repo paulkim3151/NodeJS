@@ -8,7 +8,7 @@
     },
     "scripts": {
         "server": "nodemon",
-        "db": "mongod &>/dev/null &",
+        "db": "mongod --logpath /dev/null &",
         "assets": "webpack --config webpack.config.js"
     },
 	  "nodemonConfig": {
