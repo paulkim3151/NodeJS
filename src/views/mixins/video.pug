@@ -1,12 +1,8 @@
-mixin video(info)
-	div
-		h3
-			a(href=`/videos/${info.id}`) #{info.title} &nbsp;
-			if info.owner.name
-				small by #{info.owner.name}
-		p=info.description
-		small=info.createdAt
-		small
-			each tag in info.hashtags
-				span(style="margin-left:5px")=tag
-		hr
+mixin video(video)
+	a(href=`/videos/${video.id}`).video-mixin
+		div.video-mixin__thumb
+		div.video-mixin__data
+			span.video-mixin__title=video.title
+			div.video-mixin__meta
+				span #{video.owner.name} • 
+				span #{video.meta.views} views

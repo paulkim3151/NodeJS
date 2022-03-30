@@ -1,0 +1,31 @@
+.empty__message {
+	padding: 50px;
+	margin-bottom: 50px;
+	font-size: 18px;
+	text-align: center;
+	i {
+		padding: 10px;
+	}
+}
+
+.video-grid {
+	display: grid;
+	gap: 50px;;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.auth-switch {
+	text-align: center;
+	margin-top: 20px;
+	a {
+		text-decoration: underline;
+		font-weight: bold;
+	}
+	
+}
+
+.avatar {
+	width: 150px;
+	height: 150px;
+	border-radius: 75px;
+}

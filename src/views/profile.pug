@@ -2,7 +2,12 @@ extends base
 include mixins/video
 
 block content
-	each video in user.videos
-		+video(video)
-	else
-		p This user doesn't have any video...
+	div.profile__data
+		if loggedInUser.avatarUrl
+			img(src=`${loggedInUser.socialOnly?"":"/"}`+loggedInUser.avatarUrl).avatar
+		h3=user.name
+	div.video-grid
+		each video in user.videos
+			+video(video)
+		else
+			span.empty__message No video found.

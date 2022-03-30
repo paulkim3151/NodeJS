@@ -1,21 +1,15 @@
 extends base
 
 block content
-	if loggedInUser.avatarUrl
-		img(src=`${loggedInUser.socialOnly?"":"/"}`+loggedInUser.avatarUrl, width="100",)
-	form(method="POST", enctype="multipart/form-data")
+	form(method="POST", enctype="multipart/form-data").edit-profile__form
 		label(for="avatar") Avatar
 		input(type="file", id="avatar", name="avatar", accept="image/*")
-		label Name
-			input(name="name", type="text", required, placeholder="Name", value=loggedInUser.name)
-		label Email
-			input(name="email", type="email", required, placeholder="Email", value=loggedInUser.email)
-		label User ID
-			input(name="username", type="text", required, placeholder="Username", value=loggedInUser.username)
-		label Location
-			input(name="location", type="text", placeholder="Location", value=loggedInUser.location)
+		input(name="name", type="text", required, placeholder="Name", value=loggedInUser.name)
+		input(name="email", type="email", required, placeholder="Email", value=loggedInUser.email)
+		input(name="username", type="text", required, placeholder="Username", value=loggedInUser.username)
+		input(name="location", type="text", placeholder="Location", value=loggedInUser.location)
 		input(type="submit", value="Update Profile")
 		if !loggedInUser.socialOnly
-			hr
-			a(href="change-password") Change Password &rarr;
+			div.edit-profile__password
+				a(href="change-password") Change Password &rarr;
 		
