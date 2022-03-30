@@ -29,3 +29,15 @@
 	height: 150px;
 	border-radius: 75px;
 }
+
+.error__message {
+	max-width: 420px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: $red;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	.error__icon {
+		margin-right: 10px;
+	}
+}

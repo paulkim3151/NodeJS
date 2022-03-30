@@ -6,6 +6,17 @@ header {
 	.header__logo	{
 		color: $red;
 		font-size: 38px;
+		position: relative;
+		&:before {
+			position: absolute;
+			content: "";
+			background-color: white;
+			width: 16px;
+			height: 16px;
+			z-index: -1;
+			top: calc(50% - 8px);
+			left: calc(50% - 8px);
+		}
 	}
 	ul {
 		display: flex;
@@ -34,6 +45,12 @@ header {
 		border-radius: 50%;
 	}
 	.header__no-avatar {
-		font-size: 30px;
+		width: 30px;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		border: 2px solid rgba($color: #fff, $alpha: 0.6);
 	}
 }

@@ -8,7 +8,9 @@ html(lang="ko")
 		include partials/header
 		main
 			if errorMessage
-				span(style="color:red")=errorMessage
+				div.error__message
+					i.fas.fa-triangle-exclamation.error__icon
+					| #{errorMessage}
 			block content
 	include partials/footer
 	script(src="/static/js/main.js")
