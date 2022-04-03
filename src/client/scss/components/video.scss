@@ -18,3 +18,42 @@
 		}
 	}
 }
+
+#videoContainer {
+	position: relative;
+	
+	button {
+		all: unset;
+		padding: 10px;
+	}
+	
+	#videoControls {
+		position: absolute;
+		background-color: rgba($color: #000, $alpha: 0.6);
+		border-radius: 5px;
+		width: calc(100% - 50px);
+		height: 40px;
+		margin: 0 25px;
+		top: calc(100% - 40px - 10px);
+		display: flex;
+		align-items: center;
+		opacity: 0;
+		transition: opacity 0.5s;
+		&.showing {
+			opacity: 1;
+		}
+		
+		.timelineZone {
+			padding: 0 5px;
+		};
+		
+		#volume {
+			width: 100px;
+		}
+		#timeline {
+			flex: 1;
+		}
+	}
+	
+}
+
