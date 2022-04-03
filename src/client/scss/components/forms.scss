@@ -13,7 +13,7 @@ form {
 	}
 }
 
-input {
+input:not(.video-controls) {
 	all: unset;
 	padding: 15px 20px;
 	border-radius: 5px;

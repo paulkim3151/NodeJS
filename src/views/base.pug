@@ -12,5 +12,7 @@ html(lang="ko")
 					i.fas.fa-triangle-exclamation.error__icon
 					| #{errorMessage}
 			block content
-	include partials/footer
-	script(src="/static/js/main.js")
+		include partials/footer
+	block scripts
+	
+//-https://evan-moon.github.io/2020/05/21/about-cors/
