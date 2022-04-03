@@ -9,8 +9,10 @@ const fullScreenBtn = document.getElementById('fullScreen');
 const videoContainer = document.getElementById('videoContainer');
 const videoControls = document.getElementById('videoControls');
 
+const SEEK_TIME = 5;
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
+
 
 let volumeValue = 0.5;
 video.volume = volumeValue;
@@ -108,6 +110,21 @@ video.addEventListener('loadedmetadata', handleLoadedMetadata);
 video.addEventListener('timeupdate', handleTimeUpdate);
 videoContainer.addEventListener('mousemove', handleMouseMove);
 videoContainer.addEventListener('mouseleave', handleMouseLeave);
+
+const handleKeyDown = (event) => {
+	console.log(event.code);
+	if (event.code === "Space") {
+		handlePlay();
+	} else if (event.code === "KeyF") {
+		handleFullScreen();	
+	} else if (event.code === "ArrowLeft") {
+		video.currentTime = video.currentTime > SEEK_TIME? video.currentTime - SEEK_TIME : 0;
+	} else if (event.code === "ArrowRight") {
+		video.currentTime = (video.currentTime + SEEK_TIME < video.duration) ? (video.currentTime + SEEK_TIME) : video.duration;
+	}
+}
+
+document.addEventListener('keydown', handleKeyDown);
 
 document.onfullscreenchange = () => {
 	const fullscreenElem = document.fullscreenElement;
