@@ -3,19 +3,31 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	.header__logo	{
-		color: $red;
-		font-size: 38px;
-		position: relative;
-		&:before {
-			position: absolute;
-			content: "";
-			background-color: white;
-			width: 16px;
-			height: 16px;
-			z-index: -1;
-			top: calc(50% - 8px);
-			left: calc(50% - 8px);
+	.header__logo-container {
+		display: flex;
+		align-items: center;
+		.header__logo	{
+			color: $red;
+			font-size: 38px;
+			position: relative;
+			display: inline-block;
+			&:before {
+				position: absolute;
+				content: "";
+				background-color: white;
+				width: 16px;
+				height: 16px;
+				z-index: -1;
+				top: calc(50% - 8px);
+				left: calc(50% - 8px);
+			}
+		}
+		.header__logo-text {
+			padding: 0 10px;
+			font-family: "Font Awesome 6 Brands";
+			font-size: 15px;
+			letter-spacing: .1rem;
+			font-weight: bold;
 		}
 	}
 	ul {
