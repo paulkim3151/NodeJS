@@ -2,7 +2,7 @@ extends base.pug
 
 block content
 	div#videoContainer(data-id=video._id)
-		video(src="/"+video.fileUrl, style='width:100%')
+		video(src="/"+video.fileUrl)
 		div#videoControls
 			button#play
 				i.fas.fa-play
@@ -16,19 +16,30 @@ block content
 			input(type="range", step="0.1", value="0.5", min="0", max="1")#volume.video-controls
 			button#fullScreen 
 				i.fas.fa-expand
-	//-
-		div
-			p=video.description
-			small=video.createdAt
-		div
-			small Uploaded by 
-				a(href=`/users/${video.owner._id}`)=video.owner.name
-		each tag in video.hashtags
-			small(style="margin-left: 5px")=tag
-		h3 #{video.meta.views} #{video.views === 1 ? "view" : "views" }
-		if String(video.owner._id) === String(loggedInUser._id)
-			button(onclick=`location.href='${video.id}/edit'`) Edit
-			button(onclick=`if(confirm("정말로 삭제하시겠습니까?")){location.href='${video.id}/delete'}`) Delete
+
+	div.video__meta
+		div.video__title=video.title
+			if String(video.owner._id) === String(loggedInUser._id)
+				button(onclick=`location.href='${video.id}/edit'`)
+					i.fas.fa-pen-to-square
+				button(onclick=`if(confirm("정말로 삭제하시겠습니까?")){location.href='${video.id}/delete'}`)
+					i.fas.fa-trash-can
+		div.video__info
+			span=video.createdAt
+			|  • 
+			span #{video.meta.views} #{video.views === 1 ? "view" : "views" }	
+		div.video__avatar-container
+			a(href=`/users/${video.owner._id}`).video__avatar
+				if video.owner.avatarUrl
+					img(src=`${video.owner.socialOnly?"":"/"}`+video.owner.avatarUrl).video__avatar
+				else
+					i.fas.fa-circle-user.video__avatar-none
+			div.video__owner
+				a(href=`/users/${video.owner._id}`) #{video.owner.name}
+		div.video__details
+			div.video__description #{video.description}
+			each tag in video.hashtags
+				small.video__tag #{tag} 
 
 block scripts
 	script(src="/static/js/videoPlayer.js")
