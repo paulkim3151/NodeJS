@@ -13,8 +13,6 @@ export const watch = async (req, res) => {
 		return res.status(404).render('404', { pageTitle: 'Video not found.'});
 	}
 	
-	video.meta.views++;
-	await video.save()
 	return res.render('watch', { pageTitle: `Watching ${video.title}`, video});
 };
 export const getEdit = async (req, res) => {
@@ -114,3 +112,18 @@ export const deleteVideo = async (req, res) => {
 	await Video.findByIdAndDelete(id);
 	return res.redirect('/');
 };
+
+
+export const registerView = async (req, res) => {
+	const { id } = req.params;
+	const video = await Video.findById(id);
+	if (!video) {
+		return res.sendStatus(404);
+	}
+	
+	video.meta.views++;
+	await video.save();
+	
+	return res.sendStatus(200);
+	
+}
