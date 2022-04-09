@@ -1,5 +1,9 @@
 .video-mixin {
+	flex: 0 0 250px;
+	margin: 10px;
+	
 	.video-mixin__thumb {
+		width: 250px;
 		height: 140px;
 		border-radius: 7px;
 		width: 100%;
