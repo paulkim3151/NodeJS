@@ -1,0 +1,15 @@
+.upload__thumbnail {
+	margin-bottom: 20px;
+}
+
+.upload__gen-thumbnail {
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+	&.disabled {
+		font-weight: normal;
+		pointer-events: none;
+		text-decoration: none;
+		color: rgba($color: #fff, $alpha: 0.5);
+	}
+}

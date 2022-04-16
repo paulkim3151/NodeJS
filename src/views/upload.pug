@@ -4,7 +4,15 @@ block content
 	form(method="POST", enctype="multipart/form-data")
 		label(for="video") Video File
 		input(type="file", accept="video/*", required, id="video", name="video")
+		div.upload__thumbnail
+			label(for="thumb") Thumbnail File
+			input(type="file", accept="image/*", required, id="thumb", name="thumb")
+			|  Do you need thumbnail? 
+			a.upload__gen-thumbnail Generate Thumbnail &rarr;
 		input(name="title",placeholder="Enter Title", required, type="text")
 		input(name="description",placeholder="Description", required, type="text")
 		input(name="hashtags",placeholder="Hashtags, seperated by comma.", required, type="text")
 		input(type="submit",value="Upload Video")
+
+block scripts
+	script(src="/static/js/upload.js")
