@@ -25,7 +25,7 @@ export const getEdit = async (req, res) => {
 	// Video owner check
 	const loggedUserId = req.session.user._id;
 	if (String(video.owner) !== String(loggedUserId)) {
-		// TODO: not allowed
+		req.flash("error", "Not allowed.");
 		return res.status(403).redirect("/");
 	}
 	
@@ -34,7 +34,7 @@ export const getEdit = async (req, res) => {
 export const postEdit = async (req, res) => {
 	const { id } = req.params;
 	const { title, description, hashtags } = req.body;
-	const video = await Video.exists({ _id: id });
+	const video = await Video.findById(id);
 	if (!video) {
 		return res.status(404).render('404', { pageTitle: 'Video not found.' });
 	}
@@ -42,7 +42,7 @@ export const postEdit = async (req, res) => {
 	// Video owner check
 	const loggedUserId = req.session.user._id;
 	if (String(video.owner) !== String(loggedUserId)) {
-		// TODO: not allowed
+		req.flash("error", "Not allowed.");
 		return res.status(403).redirect("/");
 	}
 	
@@ -51,6 +51,7 @@ export const postEdit = async (req, res) => {
 		description,
 		hashtags: Video.formatHashtags(hashtags),
 	});
+	req.flash("success", "Video Edited.");
 	return res.redirect(`/videos/${id}`);
 };
 
@@ -77,6 +78,7 @@ export const postUpload = async (req, res) => {
 		const user = await User.findById(userId);
 		user.videos.push(newVideo._id);
 		user.save();
+		req.flash("success", "Video Uploaded.");
 		return res.redirect('/');
 	} catch (error) {
 		console.log(error)
@@ -107,11 +109,12 @@ export const deleteVideo = async (req, res) => {
 	// Video owner check
 	const loggedUserId = req.session.user._id;
 	if (String(video.owner) !== String(loggedUserId)) {
-		// TODO: not allowed
+		req.flash("error", "Not allowed.");
 		return res.status(403).redirect("/");
 	}
 	
 	await Video.findByIdAndDelete(id);
+	req.flash("success", "Video Deleted.");
 	return res.redirect('/');
 };
 

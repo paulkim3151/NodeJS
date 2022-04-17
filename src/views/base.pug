@@ -8,9 +8,21 @@ html(lang="ko")
 		include partials/header
 		main
 			if errorMessage
-				div.error__message
-					i.fas.fa-triangle-exclamation.error__icon
+				div.message.error
+					i.fas.fa-triangle-exclamation.message__icon
 					| #{errorMessage}
+			if messages.error
+				div.message.error.fade
+					i.fas.fa-triangle-exclamation.message__icon
+					| #{messages.error}
+			if messages.info
+				div.message.info.fade
+					i.fas.fa-circle-info.message__icon
+					| #{messages.info}
+			if messages.success
+				div.message.success.fade
+					i.fas.fa-circle-check.message__icon
+					| #{messages.success}
 			block content
 		include partials/footer
 	script(src="/static/js/main.js")

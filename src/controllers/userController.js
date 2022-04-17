@@ -126,6 +126,7 @@ export const finishGithubLogin = async (req, res) => {
 		const emailObj = emailData.find((email) => email.primary && email.verified);
 		if (!emailObj) {
 			// No valid email found
+			req.flash("error", "No valid email found.");
 			return res.redirect('/login');
 		}
 
@@ -149,6 +150,7 @@ export const finishGithubLogin = async (req, res) => {
 		return res.redirect('/');
 	} else {
 		// access token error
+		req.flash("error", "Access token error.");
 		return res.redirect('/login');
 	}
 };
@@ -170,8 +172,7 @@ export const postEdit = async (req, res) => {
 	if (email !== req.session.user.email || username !== req.session.user.username) {
 		const exists = await User.exists({ $or: [{ username }, { email }] });
 		if (exists) {
-			// User already exist! TODO
-			console.log("Username or email already exists!")
+			req.flash("error", "User already exist.");
 			return res.redirect('/users/edit');
 		}
 	}
@@ -187,7 +188,7 @@ export const postEdit = async (req, res) => {
 
 export const getChangePassword= (req, res) => {
 	if(req.session.user.socialOnly) {
-		// social-only users cannot change password
+		req.flash("error", "Invaild request.");
 		return res.redirect("/");
 	}
 	return res.render("change-password", {pageTitle: "Change Password"});
@@ -223,12 +224,12 @@ export const postChangePassword= async (req, res) => {
 		}); 
 	}
 	
-	console.log("Changing password:");
+	// Change password
 	const user = await User.findById(_id);
 	user.password = newPassword;
 	await user.save();
+	req.flash("info", "Password changed.");
 	req.session.destroy();
-	// TODO: send notification
 	return res.redirect("/login");
 }
 
@@ -241,7 +242,7 @@ export const see = async (req, res) => {
 			model: "User",
 		}
 	});
-			if (!user) {
+	if (!user) {
 		return res.status(404).render("404", { pageTitle: 'User not found.' });
 	}
 	return res.render("profile", {pageTitle: `${user.name}의 Profile`, user});
