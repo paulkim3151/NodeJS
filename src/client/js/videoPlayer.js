@@ -120,7 +120,8 @@ videoContainer.addEventListener('mousemove', handleMouseMove);
 videoContainer.addEventListener('mouseleave', handleMouseLeave);
 
 const handleKeyDown = (event) => {
-	console.log(event.code);
+	return;
+	
 	if (event.code === "Space") {
 		handlePlay();
 	} else if (event.code === "KeyF") {

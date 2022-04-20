@@ -2,7 +2,7 @@ extends base
 
 block content
 	form(method="POST")
-		input(name="username", type="text", required, placeholder="Username")
+		input(name="username", type="text", required, placeholder="Username", autofocus)
 		input(name="password", type="password", required, placeholder="Password")
 		input(type="submit", value="Join")
 		include partials/social-login
