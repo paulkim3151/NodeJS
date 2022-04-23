@@ -183,6 +183,7 @@ export const postEdit = async (req, res) => {
 		 name, email, username, location}, 
 		{new: true});
 	req.session.user = updatedUser; // update session
+	req.flash("success", "Updated successfully.");
 	return res.redirect('/users/edit');
 };
 
