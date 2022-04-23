@@ -4,7 +4,7 @@ const form = document.getElementById('commentForm');
 const addComment = (text, id) => {
 	const videoComments = document.querySelector('.video__comments ul');
 	const newComment = document.createElement('li');
-	newComment.className = 'video__comment';
+	newComment.className = 'video__comment new';
 	newComment.dataset.id = id;
 	const content = document.createElement('div');
 	content.className = 'video__comment-content';
@@ -17,11 +17,9 @@ const addComment = (text, id) => {
 	const span = document.createElement('span');
 	span.innerText = ` ${text}`;
 
-	xmark.appendChild(xmark_icon);
-	content.appendChild(comment_icon);
-	content.appendChild(span);
-	newComment.appendChild(content);
-	newComment.appendChild(xmark);
+	xmark.append(xmark_icon);
+	content.append(comment_icon, span);
+	newComment.append(content, xmark);
 	videoComments.prepend(newComment);
 };
 
