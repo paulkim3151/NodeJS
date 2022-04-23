@@ -50,9 +50,12 @@ block content
 	div.video__comments
 		ul
 			each comment in video.comments.reverse()
-				li.video__comment
-					i.fas.fa-comment
-					|  #{comment.text}
+				li.video__comment(data-id=comment._id)
+					div.video__comment-content
+						i.fas.fa-comment
+						span  #{comment.text}
+					div.video__comment-x
+						i.fas.fa-xmark
 
 block scripts
 	script(src="/static/js/videoPlayer.js")

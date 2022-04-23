@@ -142,7 +142,8 @@ export const createComment = async (req, res) => {
 	} = req;
 	
 	if (!user) {
-		return res.sendStatus(403);
+		// user doensn't exist
+		return res.sendStatus(403); //403 forbidden
 	}
 	const userModel = await User.findById(user._id);
 	if(!userModel) {
@@ -167,5 +168,5 @@ export const createComment = async (req, res) => {
 	await video.save();
 	await userModel.save();
 	
-	return res.sendStatus(201);
+	return res.sendStatus(201).json({newCommentId:comment._id}); //201 Created
 };

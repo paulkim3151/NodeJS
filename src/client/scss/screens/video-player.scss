@@ -118,5 +118,10 @@ video {
 		border-radius: 999px;
 		background-color: white;
 		color: black;
+		display: flex;
+		justify-content: space-between;
+	}
+	.video__comment-x {
+		margin-right: 5px;
 	}
 }
