@@ -13,8 +13,7 @@ export const watch = async (req, res) => {
 	if (!video) {
 		return res.status(404).render('404', { pageTitle: 'Video not found.' });
 	}
-
-	console.log(video);
+	
 	return res.render('watch', { pageTitle: `Watching ${video.title}`, video });
 };
 export const getEdit = async (req, res) => {
@@ -168,5 +167,5 @@ export const createComment = async (req, res) => {
 	await video.save();
 	await userModel.save();
 	
-	return res.sendStatus(201).json({newCommentId:comment._id}); //201 Created
+	return res.status(201).json({newCommentId:comment._id}); //201 Created
 };
