@@ -8,8 +8,8 @@ const addCommentElement = (text, id) => {
 	newComment.dataset.id = id;
 	const content = document.createElement('div');
 	content.className = 'video__comment-content';
-	const xmark = document.createElement('div');
-	xmark.className = 'video__comment-x';
+	const xbtn = document.createElement('button');
+	xbtn.className = 'video__comment-x';
 	const xmark_icon = document.createElement('i');
 	xmark_icon.className = 'fas fa-xmark';
 	const comment_icon = document.createElement('i');
@@ -17,9 +17,11 @@ const addCommentElement = (text, id) => {
 	const span = document.createElement('span');
 	span.innerText = ` ${text}`;
 
-	xmark.append(xmark_icon);
+	xbtn.append(xmark_icon);
+	xbtn.addEventListener('click', handleDelete);
 	content.append(comment_icon, span);
-	newComment.append(content, xmark);
+	newComment.append(content, xbtn);
+	newComment.addEventListener('animationend', (event) => {event.target.classList.remove("new");})
 	videoComments.prepend(newComment);
 };
 
