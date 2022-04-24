@@ -169,3 +169,28 @@ export const createComment = async (req, res) => {
 	
 	return res.status(201).json({newCommentId:comment._id}); //201 Created
 };
+
+export const deleteComment = async (req, res) => {
+	const {
+		session: { user },
+		params: { id },
+	} = req;
+	
+	if (!user) {
+		// user doensn't exist
+		return res.sendStatus(400); //400 Bad Request
+	}
+	
+	const comment = await Comment.findById(id);
+	if (!comment) {
+		return res.sendStatus(400); //400 Bad Request
+	}
+
+	// Comment owner check
+	if (String(comment.owner._id) !== String(user._id)) {
+		return res.sendStatus(403); //403 forbidden
+	}
+	
+	await Comment.findByIdAndDelete(comment._id);
+	return res.sendStatus(200);
+}

@@ -54,8 +54,9 @@ block content
 					div.video__comment-content
 						i.fas.fa-comment
 						span  #{comment.text}
-					div.video__comment-x
-						i.fas.fa-xmark
+					if String(comment.owner._id) === String(loggedInUser._id)
+						button.video__comment-x
+							i.fas.fa-xmark
 
 block scripts
 	script(src="/static/js/videoPlayer.js")
