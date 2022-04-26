@@ -90,15 +90,22 @@ export const postUpload = async (req, res) => {
 
 export const search = async (req, res) => {
 	const { keyword } = req.query;
+	console.log(keyword);
 	let videos = [];
 	if (keyword) {
-		videos = await Video.find({
-			title: {
-				$regex: new RegExp(keyword, 'i'),
-			},
-		}).populate('owner');
+		if (keyword.startsWith('#')) { //hashtag search
+			videos = await Video.find({
+				hashtags: keyword,
+			}).populate('owner');
+		} else {
+			videos = await Video.find({ // title search
+				title: {
+					$regex: new RegExp(keyword, 'i'),
+				},
+			}).populate('owner');
+		}
 	}
-	return res.render('search', { pageTitle: 'Search Video', videos });
+	return res.render('search', { pageTitle: 'Search Video', videos, keyword });
 };
 
 export const deleteVideo = async (req, res) => {

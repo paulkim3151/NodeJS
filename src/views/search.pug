@@ -3,14 +3,14 @@ include mixins/video
 
 block content
 	form(method="GET").search__form
-		input(placeholder="Search by Title", name="keyword", type="text", autofocus)
+		input(placeholder="Search by Title", name="keyword", type="text", autofocus, value=keyword?keyword:"")
 		button 
 			i.fas.fa-search
 	
-	each item in videos
-		div.video-grid
+	div.video-grid
+		each item in videos
 			+video(item)
-	else
-		div.empty__message  
-			i.fas.fa-triangle-exclamation 
-			| No video found.
+		else
+			div.empty__message  
+				i.fas.fa-triangle-exclamation 
+				| No video found.
