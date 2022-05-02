@@ -44,9 +44,8 @@ block content
 				
 	if loggedIn
 		div.video__add-comments
-			form.video__comment-form#commentForm
-				textarea(style="width:100%", placeholder="Comment...")
-				button Add Comment
+			form.no-style.video__comment-form#commentForm
+				input(placeholder="Enter Comment...", required)
 	
 	div.video__comments
 		ul

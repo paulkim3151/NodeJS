@@ -27,8 +27,8 @@ const addCommentElement = (text, id) => {
 
 const handleSubmit = async (event) => {
 	event.preventDefault();
-	const textarea = form.querySelector('textarea');
-	const text = textarea.value;
+	const input = form.querySelector('input');
+	const text = input.value;
 	const videoId = videoContainer.dataset.id;
 
 	if (text === '') {
@@ -44,7 +44,7 @@ const handleSubmit = async (event) => {
 	});
 
 	if (response.status === 201) {
-		textarea.value = '';
+		input.value = '';
 		const { newCommentId } = await response.json();
 		addCommentElement(text, newCommentId);
 	}
