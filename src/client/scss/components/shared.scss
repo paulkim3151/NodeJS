@@ -62,10 +62,11 @@
 	margin-bottom: 10px;
 	
 	&.fade {
-		position: absolute;
+		position: fixed;
 		top: 30px;
 		left: 0;
 		right: 0;
+		z-index: 10;
 		animation-name: fadein, fadeout;
 		animation-duration: 1s;
 		animation-timing-function: ease-in-out;
