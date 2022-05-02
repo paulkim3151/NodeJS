@@ -7,9 +7,13 @@
         "url": "git+https://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@github.com/paulkim3151/NodeJS.git"
     },
     "scripts": {
-        "server": "nodemon",
-        "db": "mongod --logpath /dev/null &",
-        "assets": "webpack --config webpack.config.js"
+		 "start": "node build/init.js",
+		 "build": "npm run build:server && npm run build:assets",
+		 "build:server": "babel src -d build",
+		 "build:assets": "webpack --mode=production",
+		 "db": "mongod --logpath /dev/null &",
+		 "dev:server": "nodemon",
+		 "dev:assets": "webpack --mode=development -w"
     },
     "nodemonConfig": {
         "ignore": [
@@ -42,7 +46,8 @@
         "regenerator-runtime": "^0.13.9"
     },
     "devDependencies": {
-        "@babel/core": "^7.17.5",
+        "@babel/cli": "^7.17.10",
+        "@babel/core": "^7.17.10",
         "@babel/node": "^7.16.8",
         "@babel/preset-env": "^7.16.11",
         "babel-loader": "^8.2.4",

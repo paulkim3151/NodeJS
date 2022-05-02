@@ -10,8 +10,6 @@ module.exports = {
 		commentSection: BASE_JS + 'commentSection.js',
 		videoPlayer: BASE_JS + 'videoPlayer.js'
 	},
-	mode: 'development',
-	watch: true,
 	plugins: [new MiniCssExtractPlugin({
 		filename: "css/styles.css"
 	})],
