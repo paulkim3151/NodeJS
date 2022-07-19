@@ -2,8 +2,6 @@ Youtube Cloning Project
 =============
 
 이 프로젝트는 **[Nomad Coders](https://nomadcoders.co)의 [풀스택] 유튜브 클론코딩**의 강의를 기반으로 작성한 코드입니다.
-
-📜 **[Server Link](https://paulkim3151.run.goorm.io)** 📜
 <br>
 <br>
 
