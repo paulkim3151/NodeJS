@@ -1,8 +1,12 @@
 Youtube Cloning Project
 =============
 
-이 프로젝트는 **Nomadcoder의 [풀스택] 유튜브 클론코딩**의 강의를 기반으로 작성한 코드입니다.
+이 프로젝트는 **[Nomad Coders](https://nomadcoders.co)의 [풀스택] 유튜브 클론코딩**의 강의를 기반으로 작성한 코드입니다.
 
-Server: [Link](https://paulkim3151.run.goorm.io, "Server Link")
+📜 **[Server Link](https://paulkim3151.run.goorm.io)** 📜
+<br>
+<br>
 
-TODO: 비디오 삭제시 User Model에서도 video 삭제
+⚒️ **Languages** ⚒️
+
+<img src="https://img.shields.io/badge/Node.JS-339933?style=flat-square&logo=Node.js&logoColor=white"/> <img src="https://img.shields.io/badge/Pug-A86454?style=flat-square&logo=Pug&logoColor=white"/>
